@@ -1,0 +1,204 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgba(14, 13, 13, 0.151);
+}
+
+/* Header */
+header {
+  background-color: #000;
+  border-bottom: 2px solid #0f0;
+  padding: 1rem 2rem;
+  position: sticky;   /* stays visible on scroll */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  text-shadow: 0 0 5px #0f0, 0 0 15px #0f0;
+}
+
+/* Nav */
+.nav_list {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav_link {
+    color: #0f0;
+    font-family: monospace;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav_link:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Image layering */
+.hero-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0; /* behind text */
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  background-color: #000;
+  opacity: 0;
+  animation: fade 12s infinite; /* loop through images */
+}
+
+/* Multiple images timing */
+.hero-img:nth-child(1) { animation-delay: 0s; }
+.hero-img:nth-child(2) { animation-delay: 4s; }
+.hero-img:nth-child(3) { animation-delay: 8s; }
+
+/* Fade effect for loop */
+@keyframes fade {
+  0%, 25% { opacity: 1; }
+  33%, 100% { opacity: 0; }
+}
+
+/* Rain overlay */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 0, 0.1) 0,
+    rgba(0, 255, 0, 0.2) 2px,
+    transparent 4px
+  );
+  animation: rain 10s linear infinite;
+  z-index: 1;
+}
+
+/* Hero text styles */
+.hero h1,
+.hero h2,
+.hero p {
+  color: #0f0;
+  font-family: monospace;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+  position: relative;
+  z-index: 2; /* above rain and images */
+  margin: 0.5rem 0;
+}
+
+/* Glitch effect for h1 */
+.hero h1::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: glitch 2s infinite;
+  color: #0f0;
+  text-shadow: 0 0 5px #0f0, 0 0 15px #0f0;
+  z-index: -1;
+}
+
+/* Rain animation */
+@keyframes rain {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Glitch animation */
+@keyframes glitch {
+  0%, 100% {
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(0);
+  }
+  33% {
+    clip-path: polygon(0 0, 100% 0, 100% 15%, 0 15%);
+    transform: translate(-5px, -5px);
+  }
+  66% {
+    clip-path: polygon(0 85%, 100% 85%, 100% 100%, 0 100%);
+    transform: translate(5px, 5px);
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  color: #0f0;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-family: monospace;
+  border-top: 2px solid #0f0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-shadow: 0 0 5px #0f0, 0 0 15px #0f0;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: #0f0;
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+}
